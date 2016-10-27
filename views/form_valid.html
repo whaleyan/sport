@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Form - 注册表单</title>
+	<script src="../js/lib/angular.min.js"></script>
+	<script>
+		var myApp=angular.module("myApp",[])
+		myApp.controller("myCtrl",function($scope){
+			$scope.user={};
+
+		})
+	</script>
+    <style>
+        body {     font: normal 16px/1.4 Georgia;  }
+        input:not([type='checkbox']), select {   width: 250px;  }
+        select, input {   padding: 5px; margin-top: 12px;font-family: inherit; }
+        input[type='submit'] {    width: 264px; }
+        form span {    color: red; }
+		input[name='email'].ng-dirty.ng-invalid{
+			color:red;
+		}
+		input[name='email'].ng-dirty.ng-valid{
+			color:green;
+		}
+		input[name='pname'].ng-dirty.ng-invalid{
+			color:red;
+		}
+		input[name='pname'].ng-dirty.ng-valid{
+			color:green;
+		}
+    </style>
+</head>
+<body ng-controller="myCtrl">
+<p>registerForm.$pristine:{{registerForm.$pristine}}</p>
+<p>registerForm.$dirty:{{registerForm.$dirty}}</p>
+<p>registerForm.$valid:{{registerForm.$valid}}</p>
+<p>registerForm.$invalid:{{registerForm.$invalid}}</p>
+<div>
+    <form name="registerForm" novalidate>
+        <input type="text" placeholder="name" name="pname" ng-model="user.name"  required>
+        <span ng-show="registerForm.pname.$error.required && registerForm.pname.$dirty">用户名不能为空</span>
+        <br/>
+
+        <input type="email" placeholder="Email" name="email" ng-model="user.email" required>
+        <span ng-show="registerForm.email.$dirty">
+            <span ng-show="registerForm.email.$error.required">邮箱不能为空</span>
+            <span ng-show="registerForm.email.$error.email">邮箱格式错误</span>
+        </span>
+        <br/>
+
+        <select name="channels">
+            <option value="">您从哪里知道的我们?</option>
+        </select>
+        <br/>
+
+        <input type="checkbox" name="newsletterOptIn"
+               id="newsletterOptIn" value="newsletterOptIn"/>
+        <label for="newsletterOptIn">接收时事通讯</label>
+        <br/>
+
+        <input type="submit" value="注册">
+    </form>
+
+    <div>
+        谢谢您花费宝贵时间注册!
+    </div>
+</div>
+</body>
+</html>

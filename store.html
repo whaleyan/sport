@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<script src="js/lib/angular.min.js"></script>
+	<script>
+		var cart=[];
+		var shopCart={
+			//添加
+			add:function(product){
+				for(var i=0;i<cart.length;i++){
+					var item=cart[i];
+					if(item.product.name == product.name){
+						item.number++;
+						return;
+					}
+				}
+				cart.push({product:product,number:1})
+			},
+			remove:function(name){
+				for(var i=0;i<cart.length;i++){
+					var item=cart[i];
+					if(item.product.name == product.name){
+						item.splice();
+						return;
+					}
+				}
+			},
+			findAll:function(){
+				return cart;
+			},
+			clear:function(){
+				cart.length = 0;
+			}
+		}
+		//----------
+		console.log("逛");
+		console.log("买");
+		var product01={name:"方便面",price:5.00}
+		console.log("放进去")
+		shopCart.add(product01);
+
+		console.log("\n不够，加")
+		var product02={name:"方便面",price:5.00}
+		shopCart.add(product02);
+
+		console.log("继续逛")
+		console.log("再买")
+		var product03={name:"火腿肠",price:2.00}
+		console.log("放入购物车");
+		shopCart.add(product03);
+
+		console.log("\n\n看看购物车有什么")
+		var productList = shopCart.findAll();
+		console.log("商品名称\t商品价格\t购买数量")
+		for(var i=0;i<productList.length;i++){
+			var item=productList[0];
+			console.log(item.product.name+"\t"+item.product.price+"\t"+item.number)
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
